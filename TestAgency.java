@@ -1,6 +1,20 @@
 
 // Please include your Pledge of Honor here.
 
+/* *********** Pledge of Honor ************************************************ *
+
+I hereby certify that I have completed this lab assignment on my own
+without any help from anyone else. I understand that the only sources of authorized
+information in this lab assignment are (1) the course textbook, (2) the
+materials posted at the course website and (3) any study notes handwritten by myself.
+I have not used, accessed or received any information from any other unauthorized
+source in taking this lab assignment. The effort in the assignment thus belongs
+completely to me.
+READ AND SIGN BY WRITING YOUR NAME SURNAME AND STUDENT ID
+SIGNATURE: <Bartu Birol, 0079227>
+********************************************************************************/
+
+
 import housing.Person;
 import housing.Agency;
 import housing.SharedHouse;
@@ -52,15 +66,53 @@ public class TestAgency {
 		agency2.findHouse(m6);
 		agency2.findHouse(m7);
 
-
 		agency2.findHouse(m10);
 		agency2.findHouse(m11);
+
 
 		// print agency info
 		System.out.println(agency1);
 		System.out.println(agency2);
 
+		
+		listAvailability(agency1, 2);
+		listAvailability(agency1, 8);
+		
         // ##ToDo##: call listAvailability method to list houses with selected availability
 	}
 	// ##ToDo##: add listAvailability method
+	public static void listAvailability (Agency agency, int availability) {
+		
+		boolean found = false;
+		
+		for (int i=0; i < agency.getSharedHouses().length; i++) {
+			
+			if (agency.getSharedHouses()[i] != null) {
+				
+				int persons = 0;
+				
+				for (int j=0; j < agency.getSharedHouses()[i].getPersons().length; j++) {
+					
+					if (!(agency.getSharedHouses()[i].getPersons()[j] == null)) {
+						
+						persons +=1;
+					}
+					
+				}
+				
+				int currentAvailability = agency.getSharedHouses()[i].getCapacity() - persons;
+				
+				if (currentAvailability >= availability) {
+					
+					found = true;
+					System.out.println("House with available capactiy: "+ availability + " " + agency.getSharedHouses()[i].getAdress());
+				}
+			}
+		}
+			
+	    if (found == false) {
+	        System.out.println("No matching houses found.");
+		
+	    }
+	}
 }
