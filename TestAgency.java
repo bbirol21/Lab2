@@ -20,10 +20,43 @@ import housing.Agency;
 import housing.SharedHouse;
 
 public class TestAgency {
+	
+	
+	public static void checkPerson(Agency agency, String name) {
+		
+		boolean isHere = false;
+		
+		for (int i=0; i < agency.getSharedHouses().length; i++) {
+			
+			if (agency.getSharedHouses()[i] != null) {
+				
+				for (int j=0; j < agency.getSharedHouses()[i].getPersons().length; j++) {
+					
+					if (agency.getSharedHouses()[i].getPersons()[j] != null) {
+						
+						if (agency.getSharedHouses()[i].getPersons()[j].getName().equals(name)) {
+							
+							isHere = true;
+							
+							System.out.println(name + " lives in " + agency.getSharedHouses()[i].getAdress());
+						}
+					}
+					
+				}
+			}
+		}
+		
+		if (isHere == false) {
+			
+			System.out.println(name + " is not found");
+		}
+    }
+		
 
 	public static void main(String[] args) {
 		
 		// define Persons
+		System.out.println("Numer of persons: " + Person.getPersonCount());
 		Person m1 = new Person("Carey", 30000);
 		Person m2 = new Person("Mary", 12000);
 		Person m3 = new Person("Dennis", 15000);
@@ -37,6 +70,8 @@ public class TestAgency {
 		// define Anonymous Persons
 		Person m10 = new Person(70000);
 		Person m11 = new Person(120000);
+		
+		System.out.println("Numer of persons: " + Person.getPersonCount());
 
 		// update income for some Persons
 		m1.updateIncome(6000);
@@ -78,6 +113,8 @@ public class TestAgency {
 		listAvailability(agency1, 2);
 		listAvailability(agency1, 8);
 		
+		checkPerson(agency2, "Mary");
+		
         // ##ToDo##: call listAvailability method to list houses with selected availability
 	}
 	// ##ToDo##: add listAvailability method
@@ -115,4 +152,5 @@ public class TestAgency {
 		
 	    }
 	}
+	
 }

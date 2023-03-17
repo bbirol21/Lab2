@@ -5,10 +5,12 @@ public class Person {
 	
 	private String name;
 	private double income;
+	private static int count = 0;
 
 	public Person(String name, double income) {
 		this.name = name;
 		this.income = income;
+		count++;
 	}
 	
 	public Person(double income) {	
@@ -44,4 +46,7 @@ public class Person {
 		return name + " " + income;
 	}
 	
+	public static int getPersonCount() {
+		return count;
+	}
 }
